@@ -11,6 +11,13 @@ exports.createItem = async (req, res) => {
         description: 'Data to create an item',
         required: true,
     }
+    #swagger.parameters['Token'] = {
+        in: 'header',
+        name: 'Token',
+        description: 'JWT Token',
+        required: true,
+        type: 'string'
+    }
     #swagger.responses[201] = {
         description: 'Item successfully created',
     }
@@ -33,6 +40,13 @@ exports.getAllItems = async (req, res) => {
     #swagger.tags = ['Items']
     #swagger.description = 'Get all items entries'
     #swagger.summary = 'Get all items entries'
+    #swagger.parameters['Token'] = {
+        in: 'header',
+        name: 'Token',
+        description: 'JWT Token',
+        required: true,
+        type: 'string'
+    }
     #swagger.responses[200] = {
         description: 'Items entries successfully obtained',
     }
@@ -60,6 +74,13 @@ exports.getItem = async (req, res) => {
         description: 'Item id',
         required: true,
     }
+    #swagger.parameters['Token'] = {
+        in: 'header',
+        name: 'Token',
+        description: 'JWT Token',
+        required: true,
+        type: 'string'
+    }
     #swagger.responses[404] = {
         description: 'Item not found',
     }
@@ -85,6 +106,39 @@ exports.getItem = async (req, res) => {
 };
 
 exports.updateItem = async (req, res) => {
+  /* 
+    #swagger.tags = ['Items']
+    #swagger.description = 'Update an item entry'
+    #swagger.summary = 'Update an item entry'
+    #swagger.parameters['id'] = {
+        description: 'Item id',
+        required: true,
+        type: 'string',
+        in: 'path'
+    }
+    #swagger.parameters['Token'] = {
+        in: 'header',
+        name: 'Token',
+        description: 'JWT Token',
+        required: true,
+        type: 'string'
+    }
+    #swagger.parameters['data'] = {
+        in: 'body',
+        description: 'Data to update the item',
+        required: true,
+    }
+    #swagger.responses[200] = {
+        description: 'Item successfully updated',
+    }
+    #swagger.responses[400] = {
+        description: 'Bad request',
+    }
+    #swagger.responses[404] = {
+        description: 'Item not found',
+    }
+  */
+
   try {
     const itemId = req.params.id;
     const data = req.body;
@@ -97,6 +151,34 @@ exports.updateItem = async (req, res) => {
 };
 
 exports.deleteItem = async (req, res) => {
+  /* 
+    #swagger.tags = ['Items']
+    #swagger.description = 'Delete an item entry'
+    #swagger.summary = 'Delete an item entry'
+    #swagger.parameters['id'] = {
+        description: 'Item id',
+        required: true,
+        type: 'string',
+        in: 'path'
+    }
+    #swagger.parameters['Token'] = {
+        in: 'header',
+        name: 'Token',
+        description: 'JWT Token',
+        required: true,
+        type: 'string'
+    }
+    #swagger.responses[200] = {
+        description: 'Item successfully deleted',
+    }
+    #swagger.responses[400] = {
+        description: 'Bad request',
+    }
+    #swagger.responses[404] = {
+        description: 'Item not found',
+    }
+  */
+ 
   try {
     const itemId = req.params.id;
     await db.collection("items").doc(itemId).delete();

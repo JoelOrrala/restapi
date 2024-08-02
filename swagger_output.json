@@ -28,6 +28,13 @@
               "type": "object",
               "properties": {}
             }
+          },
+          {
+            "name": "Token",
+            "in": "header",
+            "description": "JWT Token",
+            "required": true,
+            "type": "string"
           }
         ],
         "responses": {
@@ -45,6 +52,15 @@
         ],
         "summary": "Get all items entries",
         "description": "Get all items entries",
+        "parameters": [
+          {
+            "name": "Token",
+            "in": "header",
+            "description": "JWT Token",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Items entries successfully obtained"
@@ -69,6 +85,13 @@
             "required": true,
             "type": "string",
             "description": "Item id"
+          },
+          {
+            "name": "Token",
+            "in": "header",
+            "description": "JWT Token",
+            "required": true,
+            "type": "string"
           }
         ],
         "responses": {
@@ -84,40 +107,80 @@
         }
       },
       "put": {
-        "description": "",
+        "tags": [
+          "Items"
+        ],
+        "summary": "Update an item entry",
+        "description": "Update an item entry",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
+            "type": "string",
+            "description": "Item id"
+          },
+          {
+            "name": "Token",
+            "in": "header",
+            "description": "JWT Token",
+            "required": true,
             "type": "string"
+          },
+          {
+            "name": "data",
+            "in": "body",
+            "description": "Data to update the item",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Item successfully updated"
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Item not found"
           }
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Items"
+        ],
+        "summary": "Delete an item entry",
+        "description": "Delete an item entry",
         "parameters": [
           {
             "name": "id",
             "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Item id"
+          },
+          {
+            "name": "Token",
+            "in": "header",
+            "description": "JWT Token",
             "required": true,
             "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Item successfully deleted"
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Item not found"
           }
         }
       }
